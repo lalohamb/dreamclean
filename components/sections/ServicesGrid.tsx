@@ -1,0 +1,23 @@
+import { SERVICES } from "@/lib/constants";
+import ServiceCard from "@/components/ui/ServiceCard";
+import SectionHeading from "@/components/ui/SectionHeading";
+
+export default function ServicesGrid() {
+  return (
+    <section id="services" className="section-pad bg-brand-ice-blue" aria-label="Our services">
+      <div className="container-xl">
+        <SectionHeading
+          eyebrow="What We Offer"
+          heading="Thoughtful Cleaning\nfor Every Space."
+          sub="Five dedicated services designed around the spaces and schedules that matter to you."
+          center
+        />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {SERVICES.map((service) => (
+            <ServiceCard key={service.slug} service={service} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
