@@ -42,6 +42,20 @@
     animation: shimmer 2.4s infinite;
   }
 
+  @keyframes bubble-float {
+    0%   { transform: translateY(0)   scale(1);    opacity: 0; }
+    5%   { opacity: 1; }
+    90%  { opacity: 0.7; }
+    100% { transform: translateY(-110vh) scale(0.85); opacity: 0; }
+  }
+
+  .animate-bubble-float {
+    animation-name: bubble-float;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+  }
+
   @keyframes shimmer {
     0%   { background-position: 200% 0; }
     100% { background-position: -200% 0; }

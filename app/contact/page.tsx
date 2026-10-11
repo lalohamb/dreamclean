@@ -4,6 +4,7 @@ import FacebookIcon from "@/components/ui/FacebookIcon";
 import Button from "@/components/ui/Button";
 import { BUSINESS } from "@/lib/constants";
 import { buildMetadata } from "@/lib/metadata";
+import FloatingBubbles from "@/components/sections/FloatingBubbles";
 
 export const metadata: Metadata = buildMetadata({
   title: "Contact Us",
@@ -15,8 +16,9 @@ export const metadata: Metadata = buildMetadata({
 export default function ContactPage() {
   return (
     <>
-      <section className="pt-32 pb-16 bg-brand-ice-blue">
-        <div className="container-md text-center">
+      <section className="relative pt-32 pb-16 bg-brand-ice-blue overflow-hidden">
+        <FloatingBubbles />
+        <div className="container-md text-center relative z-10">
           <p className="text-sm font-heading font-semibold uppercase tracking-widest text-brand-pink mb-3">
             Get In Touch
           </p>

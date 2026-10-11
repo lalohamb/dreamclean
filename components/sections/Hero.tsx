@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Button from "@/components/ui/Button";
 import { Sparkles } from "lucide-react";
+import FloatingBubbles from "@/components/sections/FloatingBubbles";
 
 export default function Hero() {
   return (
@@ -8,7 +9,7 @@ export default function Hero() {
       className="relative min-h-[92vh] flex items-center bg-brand-ice-blue overflow-hidden pt-20"
       aria-label="Hero"
     >
-      {/* Background image — right half */}
+      {/* Background image — right half only on lg+ */}
       <div className="absolute inset-y-0 right-0 w-full lg:w-[55%] z-0">
         <Image
           src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&q=80"
@@ -18,9 +19,13 @@ export default function Hero() {
           sizes="(max-width:1024px) 100vw, 55vw"
           className="object-cover"
         />
-        {/* Gradient overlay — fades photo into left content area */}
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-ice-blue via-brand-ice-blue/80 to-transparent lg:via-brand-ice-blue/60" />
+        {/* Mobile: fully opaque left cover; lg: fade from left */}
+        {/* Mobile: solid cover; desktop: gradient fade left→transparent */}
+        <div className="absolute inset-0 bg-brand-ice-blue lg:[background:linear-gradient(to_right,#EFF8FF_0%,rgba(239,248,255,0.65)_45%,transparent_100%)]" />
       </div>
+
+      {/* Floating suds */}
+      <FloatingBubbles />
 
       {/* Content */}
       <div className="container-xl relative z-10 py-20">
