@@ -1,9 +1,26 @@
+"use client";
 import Image from "next/image";
 import Button from "@/components/ui/Button";
 import { Sparkles } from "lucide-react";
 import FloatingBubbles from "@/components/sections/FloatingBubbles";
 
+const PHOTOS = [
+  "/193576351_111199977835788_7236715514882148363_n.jpg",
+  "/468358154_874160801539698_8034201561199308748_n.jpg",
+  "/470212576_885972083691903_333170140043904055_n.jpg",
+  "/471151824_886242170347736_2320801605946304729_n.jpg",
+  "/471173982_890856676536777_8821864839160866793_n.jpg",
+  "/472751969_903655438590234_3423601555640289586_n.jpg",
+  "/473095822_903047578651020_2986316074479866709_n.jpg",
+  "/473283654_903655311923580_8459094752069935572_n.jpg",
+  "/473885044_909622591326852_9069517055179618664_n.jpg",
+  "/558358670_10172804311715486_539484865623809195_n.jpg",
+  "/white-kitchen-ushaped.jpg",
+];
+
 export default function Hero() {
+  const photo = PHOTOS[Math.floor(Math.random() * PHOTOS.length)];
+
   return (
     <section
       className="relative min-h-[92vh] flex items-center bg-brand-ice-blue overflow-hidden pt-20"
@@ -12,14 +29,13 @@ export default function Hero() {
       {/* Background image — right half only on lg+ */}
       <div className="absolute inset-y-0 right-0 w-full lg:w-[55%] z-0">
         <Image
-          src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&q=80"
-          alt="Bright, sunlit modern living room — development placeholder image"
+          src={photo}
+          alt="Dream Clean Shine — professional cleaning"
           fill
           priority
           sizes="(max-width:1024px) 100vw, 55vw"
-          className="object-cover"
+          className="object-cover object-top"
         />
-        {/* Mobile: fully opaque left cover; lg: fade from left */}
         {/* Mobile: solid cover; desktop: gradient fade left→transparent */}
         <div className="absolute inset-0 bg-brand-ice-blue lg:[background:linear-gradient(to_right,#EFF8FF_0%,rgba(239,248,255,0.65)_45%,transparent_100%)]" />
       </div>
