@@ -4,6 +4,7 @@ import TrustBar      from "@/components/sections/TrustBar";
 import ServicesGrid  from "@/components/sections/ServicesGrid";
 import ValueProp     from "@/components/sections/ValueProp";
 import HowItWorks    from "@/components/sections/HowItWorks";
+import Testimonials  from "@/components/sections/Testimonials";
 import AboutPreview  from "@/components/sections/AboutPreview";
 import FinalCTA      from "@/components/sections/FinalCTA";
 import { buildMetadata } from "@/lib/metadata";
@@ -23,6 +24,7 @@ export default function HomePage() {
       <ServicesGrid />
       <ValueProp />
       <HowItWorks />
+      <Testimonials />
       <AboutPreview />
       <FinalCTA />
     </>

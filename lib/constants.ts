@@ -349,6 +349,31 @@ export const SERVICES: Service[] = [
   },
 ];
 
+// ─── Reviews ───────────────────────────────────────────────────────────────
+
+export const REVIEWS = [
+  {
+    name: "Kenya R. Ransom",
+    date: "April 22, 2025",
+    body: "Dream Clean Shine came into my house and got my whole life together within hours. She was professional, personable, and on time. My house looks like a completely different place — she even gave me tips on how to manage while she's away. I highly recommend using Jo-Jo because of them I can breathe better! Thank you for blessing my home.",
+  },
+  {
+    name: "Talise Goodwin",
+    date: "October 5, 2023",
+    body: "I love how JoJo cleans and declutters. She is the best. She has done an amazing job cleaning my home.",
+  },
+  {
+    name: "Carita Wise",
+    date: "June 5, 2023",
+    body: "I've used Dream Clean Shine several times and I was never disappointed with the results. Jovanka was on time, professional, and passionate about getting the job done. We can't do everything ourselves, so you can outsource some of your duties. Dream Clean Shine is a great choice to lighten your load.",
+  },
+  {
+    name: "Amanda Phillips",
+    date: "June 5, 2021",
+    body: "Dream Clean Shine is on time and prompt! I love how thorough she is as well as professional. She's also fast and quiet. Thank you for it all!",
+  },
+] as const;
+
 // ─── FAQ Page ──────────────────────────────────────────────────────────────
 
 export const FAQS = [
