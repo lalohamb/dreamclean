@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 const PHOTOS = [
   "/193576351_111199977835788_7236715514882148363_n.jpg",
@@ -16,7 +17,14 @@ const PHOTOS = [
 ];
 
 export default function RandomPhoto({ className }: { className?: string }) {
-  const src = PHOTOS[Math.floor(Math.random() * PHOTOS.length)];
+  const [src, setSrc] = useState<string | null>(null);
+
+  useEffect(() => {
+    setSrc(PHOTOS[Math.floor(Math.random() * PHOTOS.length)]);
+  }, []);
+
+  if (!src) return null;
+
   return (
     <Image
       src={src}

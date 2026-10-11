@@ -3,6 +3,7 @@ import Image from "next/image";
 import Button from "@/components/ui/Button";
 import { Sparkles } from "lucide-react";
 import FloatingBubbles from "@/components/sections/FloatingBubbles";
+import { useState, useEffect } from "react";
 
 const PHOTOS = [
   "/193576351_111199977835788_7236715514882148363_n.jpg",
@@ -19,7 +20,11 @@ const PHOTOS = [
 ];
 
 export default function Hero() {
-  const photo = PHOTOS[Math.floor(Math.random() * PHOTOS.length)];
+  const [photo, setPhoto] = useState<string | null>(null);
+
+  useEffect(() => {
+    setPhoto(PHOTOS[Math.floor(Math.random() * PHOTOS.length)]);
+  }, []);
 
   return (
     <section
@@ -27,6 +32,7 @@ export default function Hero() {
       aria-label="Hero"
     >
       {/* Background image — right half only on lg+ */}
+      {photo && (
       <div className="absolute inset-y-0 right-0 w-full lg:w-[55%] z-0">
         <Image
           src={photo}
@@ -39,6 +45,7 @@ export default function Hero() {
         {/* Mobile: solid cover; desktop: gradient fade left→transparent */}
         <div className="absolute inset-0 bg-brand-ice-blue lg:[background:linear-gradient(to_right,#EFF8FF_0%,rgba(239,248,255,0.65)_45%,transparent_100%)]" />
       </div>
+      )}
 
       {/* Floating suds */}
       <FloatingBubbles />
