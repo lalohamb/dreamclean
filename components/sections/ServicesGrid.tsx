@@ -8,7 +8,7 @@ export default function ServicesGrid() {
       <div className="container-xl">
         <SectionHeading
           eyebrow="What We Offer"
-          heading="Thoughtful Cleaning\nfor Every Space."
+          heading="Thoughtful Cleaning for Every Space."
           sub="Five dedicated services designed around the spaces and schedules that matter to you."
           center
         />

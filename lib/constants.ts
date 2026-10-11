@@ -22,6 +22,7 @@ export const NAV_LINKS = [
   { label: "About",        href: "/about" },
   { label: "Services",     href: "/#services" },
   { label: "Why Choose Us",href: "/#why-us" },
+  { label: "Pricing",      href: "/pricing" },
   { label: "Contact",      href: "/contact" },
 ] as const;
 
@@ -239,7 +240,7 @@ export const SERVICES: Service[] = [
     slug:  "move-in-move-out-cleaning",
     title: "Move-In / Move-Out Cleaning",
     shortDesc: "Start fresh in your new space or prepare your previous property for its next chapter.",
-    heroHeadline: "A Fresh Start\nFor Every Move.",
+    heroHeadline: "A Fresh Start For Every Move.",
     heroSub: "Thorough move-in and move-out cleaning that helps you leave on good terms or arrive to a spotless new home.",
     image:    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
     imageAlt: "Empty, freshly cleaned bright home ready for new occupants — development placeholder",

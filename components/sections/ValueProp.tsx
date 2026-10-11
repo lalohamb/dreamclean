@@ -38,7 +38,7 @@ export default function ValueProp() {
           <div className="order-1 lg:order-2">
             <SectionHeading
               eyebrow="The Dream Clean Difference"
-              heading="Your Time Is Valuable.\nYour Space Should Feel Wonderful."
+              heading="Your Time Is Valuable. Your Space Should Feel Wonderful."
               sub="Professional cleaning isn't just about a tidy room — it's about giving you back your time and the comfort of a space that feels genuinely cared for."
             />
             <ul className="space-y-4 mb-8" role="list">

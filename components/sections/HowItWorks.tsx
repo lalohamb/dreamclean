@@ -24,7 +24,7 @@ export default function HowItWorks() {
       <div className="container-xl">
         <SectionHeading
           eyebrow="The Process"
-          heading="Your Dream Clean Is\nJust Three Steps Away."
+          heading="Your Dream Clean Is Just Three Steps Away."
           center
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">

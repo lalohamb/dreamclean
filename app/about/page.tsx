@@ -12,6 +12,22 @@ export const metadata: Metadata = buildMetadata({
   path: "/about",
 });
 
+const PHOTOS = [
+/*   "/193576351_111199977835788_7236715514882148363_n.jpg",
+  "/468358154_874160801539698_8034201561199308748_n.jpg",
+  "/470212576_885972083691903_333170140043904055_n.jpg",
+  "/471151824_886242170347736_2320801605946304729_n.jpg",
+  "/471173982_890856676536777_8821864839160866793_n.jpg",
+  "/472751969_903655438590234_3423601555640289586_n.jpg",
+  "/473095822_903047578651020_2986316074479866709_n.jpg",
+  "/473283654_903655311923580_8459094752069935572_n.jpg",
+  "/473885044_909622591326852_9069517055179618664_n.jpg",
+  "/558358670_10172804311715486_539484865623809195_n.jpg", */
+  "/white-kitchen-ushaped.jpg",
+];
+
+const storyPhoto = PHOTOS[Math.floor(Math.random() * PHOTOS.length)];
+
 const values = [
   { icon: Heart,  title: "Family-Owned",          desc: "We bring the same care to your space that we'd give our own home." },
   { icon: Shield, title: "Respect for Your Space", desc: "Your property is treated with care, discretion, and professionalism." },
@@ -45,11 +61,11 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <div className="relative h-[460px] rounded-3xl overflow-hidden shadow-card-hover">
               <Image
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80"
-                alt="Clean, welcoming home — development placeholder image"
+                src={storyPhoto}
+                alt="Dream Clean Shine — professional cleaning work"
                 fill
                 sizes="(max-width:1024px) 100vw, 50vw"
-                className="object-cover"
+                className="object-cover object-center"
               />
             </div>
             <div>
