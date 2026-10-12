@@ -112,7 +112,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-white/10">
         <div className="container-xl py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} {BUSINESS.name}. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {BUSINESS.name} LLC. All rights reserved.</p>
           <div className="flex gap-5">
             <Link href="/faq" className="hover:text-slate-300 transition-colors">FAQ</Link>
             <Link href="/contact" className="hover:text-slate-300 transition-colors">Contact</Link>
