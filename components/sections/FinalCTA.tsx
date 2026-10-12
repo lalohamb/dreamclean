@@ -1,6 +1,7 @@
 import Button from "@/components/ui/Button";
 import { Phone } from "lucide-react";
 import { BUSINESS } from "@/lib/constants";
+import FloatingBubbles from "@/components/sections/FloatingBubbles";
 
 export default function FinalCTA() {
   return (
@@ -8,6 +9,7 @@ export default function FinalCTA() {
       className="section-pad bg-brand-charcoal relative overflow-hidden"
       aria-label="Get a cleaning quote"
     >
+      <FloatingBubbles count={15} />
       {/* Decorative circles */}
       <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-brand-blue/10 pointer-events-none" aria-hidden="true" />
       <div className="absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-brand-pink/10 pointer-events-none" aria-hidden="true" />

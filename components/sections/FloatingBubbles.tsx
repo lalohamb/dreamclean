@@ -15,9 +15,9 @@ function seededRand(seed: number) {
   return x - Math.floor(x);
 }
 
-export default function FloatingBubbles() {
+export default function FloatingBubbles({ count = 25 }: { count?: number }) {
   const bubbles = useMemo<Bubble[]>(() =>
-    Array.from({ length: 25 }, (_, i) => ({
+    Array.from({ length: count }, (_, i) => ({
       id: i,
       left: `${(seededRand(i * 3) * 100).toFixed(2)}%`,
       size: 24 + Math.floor(seededRand(i * 7) * 56), // 24–80 px

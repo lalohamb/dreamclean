@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Button from "@/components/ui/Button";
 import { ArrowRight } from "lucide-react";
+import FloatingBubbles from "@/components/sections/FloatingBubbles";
 
 export default function AboutPreview() {
   return (
-    <section className="section-pad bg-white" aria-label="About Dream Clean Shine">
+    <section className="relative section-pad bg-white overflow-hidden" aria-label="About Dream Clean Shine">
+      <FloatingBubbles count={20} />
       <div className="container-xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
 
@@ -34,7 +36,7 @@ export default function AboutPreview() {
           {/* Image */}
           <div className="relative h-[420px] rounded-3xl overflow-hidden shadow-card-hover">
             <Image
-              src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=900&q=80"
+              src="/Screenshot from 2026-10-11 20-56-25.png"
               alt="Clean, welcoming home interior — development placeholder image"
               fill
               sizes="(max-width:1024px) 100vw, 50vw"

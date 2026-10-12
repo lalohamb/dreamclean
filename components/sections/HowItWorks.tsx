@@ -1,4 +1,5 @@
 import SectionHeading from "@/components/ui/SectionHeading";
+import FloatingBubbles from "@/components/sections/FloatingBubbles";
 
 const steps = [
   {
@@ -20,7 +21,8 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="section-pad bg-brand-ice-blue" aria-label="How it works">
+    <section className="relative section-pad bg-brand-ice-blue overflow-hidden" aria-label="How it works">
+      <FloatingBubbles count={15} />
       <div className="container-xl">
         <SectionHeading
           eyebrow="The Process"

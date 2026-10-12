@@ -1,4 +1,5 @@
 import { Heart, Star, Shield, Clock, Users, Sparkles } from "lucide-react";
+import FloatingBubbles from "@/components/sections/FloatingBubbles";
 
 const items = [
   { icon: Heart,    label: "Family-Owned Business",           desc: "Personal investment in every job." },
@@ -13,9 +14,10 @@ export default function TrustBar() {
   return (
     <section
       id="why-us"
-      className="section-pad bg-white border-y border-slate-100"
+      className="relative section-pad bg-white border-y border-slate-100 overflow-hidden"
       aria-label="Why choose Dream Clean Shine"
     >
+      <FloatingBubbles count={15} />
       <div className="container-xl">
         <div className="text-center mb-12">
           <p className="text-sm font-heading font-semibold uppercase tracking-widest text-brand-pink mb-3">

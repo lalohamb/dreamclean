@@ -1,10 +1,12 @@
 import { SERVICES } from "@/lib/constants";
 import ServiceCard from "@/components/ui/ServiceCard";
 import SectionHeading from "@/components/ui/SectionHeading";
+import FloatingBubbles from "@/components/sections/FloatingBubbles";
 
 export default function ServicesGrid() {
   return (
-    <section id="services" className="section-pad bg-brand-ice-blue" aria-label="Our services">
+    <section id="services" className="relative section-pad bg-brand-ice-blue overflow-hidden" aria-label="Our services">
+      <FloatingBubbles count={15} />
       <div className="container-xl">
         <SectionHeading
           eyebrow="What We Offer"

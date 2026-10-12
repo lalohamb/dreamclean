@@ -48,7 +48,7 @@ export default function Hero() {
       )}
 
       {/* Floating suds */}
-      <FloatingBubbles />
+      <FloatingBubbles count={70} />
 
       {/* Content */}
       <div className="container-xl relative z-10 py-20">

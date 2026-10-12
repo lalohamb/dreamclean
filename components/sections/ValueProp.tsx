@@ -2,6 +2,7 @@ import Image from "next/image";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 import { Clock, Smile, Leaf, Home } from "lucide-react";
+import FloatingBubbles from "@/components/sections/FloatingBubbles";
 
 const points = [
   { icon: Clock,  text: "More personal time for the things you love" },
@@ -12,7 +13,8 @@ const points = [
 
 export default function ValueProp() {
   return (
-    <section className="section-pad bg-white" aria-label="Value proposition">
+    <section className="relative section-pad bg-white overflow-hidden" aria-label="Value proposition">
+      <FloatingBubbles count={15} />
       <div className="container-xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
 
