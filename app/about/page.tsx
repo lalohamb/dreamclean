@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Button from "@/components/ui/Button";
+import Image from "next/image";
 import FinalCTA from "@/components/sections/FinalCTA";
 import { buildMetadata } from "@/lib/metadata";
 import { Heart, Shield, Star, Users } from "lucide-react";
@@ -43,8 +44,15 @@ export default function AboutPage() {
       <section className="section-pad bg-white">
         <div className="container-xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-            <div className="relative h-[460px] rounded-3xl overflow-hidden shadow-card-hover">
-              <RandomPhoto />
+            <div className="relative w-full rounded-3xl overflow-hidden shadow-card-hover">
+              <Image
+                src="/558358670_10172804311715486_539484865623809195_n.jpg"
+                alt="Dream Clean Shine — professional cleaning work"
+                width={1366}
+                height={2048}
+                sizes="(max-width:1024px) 100vw, 50vw"
+                className="w-full h-auto object-cover"
+              />
             </div>
             <div>
               <h2 className="text-display-md font-heading font-extrabold text-brand-charcoal mb-5">
@@ -91,27 +99,6 @@ export default function AboutPage() {
                 <p className="text-sm text-slate-500 leading-relaxed">{desc}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Owner photo placeholder */}
-      <section className="section-pad bg-white">
-        <div className="container-md text-center">
-          <div className="bg-brand-ice-blue rounded-3xl p-10 border border-brand-blue/20">
-            <div className="w-24 h-24 rounded-full bg-brand-soft-pink mx-auto mb-5 flex items-center justify-center">
-              <Users size={36} className="text-brand-pink" />
-            </div>
-            <h2 className="text-display-md font-heading font-extrabold text-brand-charcoal mb-3">
-              Meet the Team
-            </h2>
-            <p className="text-slate-500 leading-relaxed max-w-lg mx-auto mb-2">
-              We'd love to introduce ourselves properly. A personal photo and story from the
-              Dream Clean Shine team will be added here soon.
-            </p>
-            <p className="text-xs text-slate-400 italic">
-              [Owner photo and biography — pending business submission]
-            </p>
           </div>
         </div>
       </section>
