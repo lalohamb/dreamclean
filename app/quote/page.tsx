@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import QuoteForm from "./QuoteForm";
 import { buildMetadata } from "@/lib/metadata";
 import { BUSINESS } from "@/lib/constants";
-import { Phone } from "lucide-react";
+import { Phone, Video, Building2 } from "lucide-react";
 import FacebookIcon from "@/components/ui/FacebookIcon";
 
 export const metadata: Metadata = buildMetadata({
@@ -29,9 +29,41 @@ export default function QuotePage({
             Request a Cleaning Quote
           </h1>
           <p className="text-lg text-slate-500 max-w-xl mx-auto leading-relaxed">
-            Fill out the form below and we'll follow up to discuss your space and how we can help.
-            No commitment required.
+            All new clients start with a free consultation. Fill out the form below and we'll
+            reach out to schedule yours. No commitment required.
           </p>
+        </div>
+      </section>
+
+      {/* Consultation notice */}
+      <section className="bg-white border-b border-slate-100 py-8">
+        <div className="container-xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="flex items-start gap-4 p-5 rounded-2xl bg-brand-ice-blue">
+              <div className="w-10 h-10 rounded-xl bg-brand-blue/10 flex items-center justify-center shrink-0">
+                <Video size={18} className="text-brand-blue" />
+              </div>
+              <div>
+                <p className="font-heading font-bold text-brand-charcoal text-sm mb-1">Residential & Organization</p>
+                <p className="text-xs text-slate-500 leading-relaxed">
+                  A free video consultation and virtual walkthrough is required before booking.
+                  We'll discuss your needs, assess the space, and provide a customized quote.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 p-5 rounded-2xl bg-brand-soft-pink/40">
+              <div className="w-10 h-10 rounded-xl bg-brand-pink/10 flex items-center justify-center shrink-0">
+                <Building2 size={18} className="text-brand-pink" />
+              </div>
+              <div>
+                <p className="font-heading font-bold text-brand-charcoal text-sm mb-1">Commercial Cleaning</p>
+                <p className="text-xs text-slate-500 leading-relaxed">
+                  Commercial clients require an in-person walkthrough of the facility before
+                  we can provide a quote and written scope of work.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -78,8 +110,9 @@ export default function QuotePage({
                 <p className="font-semibold text-brand-charcoal mb-2">What happens next?</p>
                 <ol className="space-y-2 list-decimal list-inside">
                   <li>We receive your request.</li>
-                  <li>We'll reach out to discuss your needs.</li>
-                  <li>We'll confirm details and schedule your service.</li>
+                  <li>We schedule your free consultation.</li>
+                  <li>We assess your space and provide a quote.</li>
+                  <li>We confirm details and schedule your service.</li>
                 </ol>
               </div>
             </aside>

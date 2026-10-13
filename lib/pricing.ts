@@ -1,174 +1,302 @@
 // ─── Pricing Data Model ────────────────────────────────────────────────────
 // Single source of truth for all published prices.
 // All monetary values stored in cents to avoid floating-point errors.
-// Fields marked needsConfirmation must not be used in automated calculations.
-
-export type Tier = "light" | "heavy";
-export type Category = "addon" | "package" | "session" | "commercial";
-
-export interface TierPrice {
-  priceCents: number;
-  unit: string;         // e.g. "per room", "up to 2 loads"
-  limit?: string;       // published weight/quantity limit
-}
-
-export interface ServiceAddon {
-  id: string;
-  name: string;
-  description: string;
-  icon: string;         // lucide icon name
-  light: TierPrice | null;
-  heavy: TierPrice | null;
-  needsConfirmation?: string;
-}
-
-export interface CleaningPackage {
-  id: string;
-  name: string;         // Dream / Clean / Shine
-  tagline: string;
-  priceCents: number;
-  visits: string;       // published visit description
-  style: string;        // "Deluxe Style"
-  highlight: boolean;   // true = visually featured card
-  needsConfirmation?: string;
-}
-
-export interface SessionRate {
-  priceCents: number;
-  description: string;
-  notes: string[];
-  needsConfirmation?: string;
-}
-
-export interface CommercialRate {
-  sessionPriceCents: number;
-  additionalHourlyPriceCents: number;
-  sessionDescription: string;
-  needsConfirmation: string;
-}
-
-// ─── Published Session Rate ────────────────────────────────────────────────
-
-export const DAILY_RATE: SessionRate = {
-  priceCents: 13000,
-  description: "Standard daily cleaning session",
-  notes: [
-    "2-hour cleaning session",
-    "30-minute grace period included",
-    "Trash removal included",
-  ],
-  needsConfirmation:
-    "Flyer states both '2-hour session with 30-min grace period' and '2 hours includes the grace period' — exact session duration requires business confirmation.",
-};
-
-// ─── Add-On Services ───────────────────────────────────────────────────────
-
-export const SERVICE_ADDONS: ServiceAddon[] = [
-  {
-    id: "oven-stove",
-    name: "Oven & Stove",
-    description: "Deep clean of oven interior, stovetop, and surrounding surfaces.",
-    icon: "Flame",
-    light: { priceCents: 3500, unit: "flat" },
-    heavy: { priceCents: 5000, unit: "flat" },
-  },
-  {
-    id: "bathroom",
-    name: "Bathroom",
-    description: "Full bathroom clean including toilet, sink, tub/shower, and floors.",
-    icon: "Bath",
-    light: { priceCents: 3000, unit: "per bathroom" },
-    heavy: { priceCents: 4500, unit: "per bathroom" },
-  },
-  {
-    id: "fridge",
-    name: "Refrigerator",
-    description: "Interior and exterior fridge clean, shelves wiped, and deodorized.",
-    icon: "Refrigerator",
-    light: { priceCents: 3000, unit: "flat" },
-    heavy: { priceCents: 3000, unit: "flat" },
-  },
-  {
-    id: "cabinets-closets",
-    name: "Cabinets / Closets",
-    description: "Interior and exterior cabinet or closet organization and wipe-down.",
-    icon: "LayoutGrid",
-    light: { priceCents: 3500, unit: "per room" },
-    heavy: { priceCents: 6500, unit: "up to 2 rooms" },
-  },
-  {
-    id: "decluttering",
-    name: "Decluttering / Organization",
-    description: "Drawers, dressers, bookshelves, and similar organization tasks.",
-    icon: "FolderOpen",
-    light: { priceCents: 4500, unit: "per room" },
-    heavy: { priceCents: 8000, unit: "up to 2 rooms or garages" },
-  },
-  {
-    id: "laundry",
-    name: "Laundry — Wash, Dry & Fold",
-    description: "Full laundry service including washing, drying, and folding.",
-    icon: "WashingMachine",
-    light: { priceCents: 4000, unit: "up to 2 loads", limit: "15 lb max" },
-    heavy: { priceCents: 7000, unit: "up to 4 loads", limit: "35 lb max" },
-    needsConfirmation:
-      "Additional load ($25 / 7 lb) is listed under Light Sleeper only. Confirm whether it applies to Heavy Dreamer before enabling add-on load calculations.",
-  },
-];
-
-export const ADDITIONAL_LAUNDRY_LOAD: TierPrice = {
-  priceCents: 2500,
-  unit: "per additional load",
-  limit: "7 lb per load",
-};
-
-// ─── Cleaning Packages ─────────────────────────────────────────────────────
-
-export const PACKAGES: CleaningPackage[] = [
-  {
-    id: "dream",
-    name: "Dream",
-    tagline: "A great start.",
-    priceCents: 23000,
-    visits: "2 visits a week",
-    style: "Deluxe Style",
-    highlight: false,
-    needsConfirmation: "Billing period (weekly / bi-weekly / monthly) not confirmed.",
-  },
-  {
-    id: "clean",
-    name: "Clean",
-    tagline: "Most popular choice.",
-    priceCents: 35000,
-    visits: "3 visits / bi-weekly",
-    style: "Deluxe Style",
-    highlight: true,
-    needsConfirmation: "Billing period not confirmed.",
-  },
-  {
-    id: "shine",
-    name: "Shine",
-    tagline: "Full coverage.",
-    priceCents: 47000,
-    visits: "5 visits / monthly",
-    style: "Deluxe Style",
-    highlight: false,
-    needsConfirmation: "Billing period not confirmed.",
-  },
-];
-
-// ─── Commercial ────────────────────────────────────────────────────────────
-
-export const COMMERCIAL: CommercialRate = {
-  sessionPriceCents: 16000,
-  additionalHourlyPriceCents: 8000,
-  sessionDescription: "Commercial cleaning session",
-  needsConfirmation:
-    "Relationship between $160 session rate and $80/hr additional rate is not defined. Does the session cover 1 hour, 2 hours, or a flat visit? Confirm before enabling overtime calculations.",
-};
-
-// ─── Helpers ───────────────────────────────────────────────────────────────
 
 export function formatPrice(cents: number): string {
   return `$${(cents / 100).toFixed(0)}`;
 }
+
+// ─── Service Categories & Tiers ───────────────────────────────────────────
+
+export interface PricingTier {
+  id: string;
+  name: string;
+  tagline: string;
+  priceCents: number;
+  priceLabel: string;   // e.g. "per visit", "per project"
+  highlight: boolean;
+  items: string[];
+}
+
+export interface ServiceCategory {
+  id: string;
+  label: string;
+  icon: string;
+  tiers: [PricingTier, PricingTier, PricingTier];
+}
+
+export const SERVICE_CATEGORIES: ServiceCategory[] = [
+  {
+    id: "residential",
+    label: "Residential",
+    icon: "Home",
+    tiers: [
+      {
+        id: "residential-fresh-start",
+        name: "Fresh Start",
+        tagline: "Standard maintenance cleaning",
+        priceCents: 17000,
+        priceLabel: "starting at",
+        highlight: false,
+        items: [
+          "Dusting accessible surfaces",
+          "Kitchen counters & exterior appliances",
+          "Bathroom cleaning and sanitizing",
+          "Vacuuming and mopping floors",
+          "Trash removal",
+        ],
+      },
+      {
+        id: "residential-deep-shine",
+        name: "Deep Shine",
+        tagline: "Detailed deep cleaning",
+        priceCents: 0,
+        priceLabel: "custom quote",
+        highlight: true,
+        items: [
+          "Everything in Fresh Start",
+          "Extra attention to buildup and grime",
+          "Baseboards and reachable detail work",
+          "Detailed bathroom and kitchen cleaning",
+          "Doors, switches and high-touch areas",
+        ],
+      },
+      {
+        id: "residential-move",
+        name: "Move-In / Move-Out",
+        tagline: "Empty-home cleaning",
+        priceCents: 35000,
+        priceLabel: "starting at",
+        highlight: false,
+        items: [
+          "Detailed cleaning of empty rooms",
+          "Cabinets and drawers, inside and out",
+          "Bathrooms and kitchen detailing",
+          "Floors, baseboards and accessible surfaces",
+          "Final presentation-ready touch-up",
+        ],
+      },
+    ],
+  },
+  {
+    id: "commercial",
+    label: "Commercial",
+    icon: "Building2",
+    tiers: [
+      {
+        id: "commercial-essential",
+        name: "Essential",
+        tagline: "Core commercial cleaning",
+        priceCents: 20000,
+        priceLabel: "per visit, starting at",
+        highlight: false,
+        items: [
+          "Trash collection and liner replacement",
+          "Accessible surface dusting",
+          "Floor vacuuming and mopping",
+          "Restroom cleaning",
+          "Basic breakroom / common-area cleaning",
+        ],
+      },
+      {
+        id: "commercial-complete",
+        name: "Complete Care",
+        tagline: "Comprehensive commercial",
+        priceCents: 35000,
+        priceLabel: "per visit, starting at",
+        highlight: true,
+        items: [
+          "Everything in Essential",
+          "Detailed restroom and breakroom care",
+          "High-touch surface disinfection",
+          "Glass doors and interior spot cleaning",
+          "Additional rooms and common areas",
+        ],
+      },
+      {
+        id: "commercial-premium",
+        name: "Premium Facility",
+        tagline: "Larger facility care",
+        priceCents: 50000,
+        priceLabel: "per visit, starting at",
+        highlight: false,
+        items: [
+          "Comprehensive cleaning of larger facilities",
+          "Detailed floor care",
+          "Multiple restrooms and common areas",
+          "Expanded cleaning checklist",
+          "Customized service plan and quality checks",
+        ],
+      },
+    ],
+  },
+  {
+    id: "offices",
+    label: "Offices",
+    icon: "Briefcase",
+    tiers: [
+      {
+        id: "office-essentials",
+        name: "Office Essentials",
+        tagline: "Core office cleaning",
+        priceCents: 12500,
+        priceLabel: "per visit, starting at",
+        highlight: false,
+        items: [
+          "Empty trash bins",
+          "Dust accessible desks and surfaces",
+          "Vacuum and mop floors",
+          "Clean one restroom",
+          "Wipe common touchpoints",
+        ],
+      },
+      {
+        id: "office-refresh",
+        name: "Office Refresh",
+        tagline: "Full office care",
+        priceCents: 20000,
+        priceLabel: "per visit, starting at",
+        highlight: true,
+        items: [
+          "Everything in Office Essentials",
+          "Clean breakroom and kitchenette",
+          "Detailed restroom cleaning",
+          "Spot-clean interior glass",
+          "Clean conference and shared spaces",
+        ],
+      },
+      {
+        id: "office-executive",
+        name: "Executive Care",
+        tagline: "Premium office cleaning",
+        priceCents: 30000,
+        priceLabel: "per visit, starting at",
+        highlight: false,
+        items: [
+          "Comprehensive office cleaning",
+          "Multiple work areas and restrooms",
+          "Detailed floors and high-touch surfaces",
+          "Breakroom and conference room care",
+          "Customized recurring checklist",
+        ],
+      },
+    ],
+  },
+  {
+    id: "organization",
+    label: "Declutter & Organization",
+    icon: "FolderOpen",
+    tiers: [
+      {
+        id: "org-simple-reset",
+        name: "Simple Reset",
+        tagline: "One small area",
+        priceCents: 10000,
+        priceLabel: "per hour, starting at",
+        highlight: false,
+        items: [
+          "Decluttering one small area",
+          "Pantry, bathroom cabinet, or small closet",
+          "Sorting and grouping items",
+          "Basic organization and tidy-up",
+        ],
+      },
+      {
+        id: "org-whole-space",
+        name: "Whole-Space",
+        tagline: "Room or closet project",
+        priceCents: 20000,
+        priceLabel: "per project, starting at",
+        highlight: true,
+        items: [
+          "Organize a bedroom, closet, or pantry",
+          "Sort belongings into categories",
+          "Create practical storage zones",
+          "Arrange items for easier access",
+        ],
+      },
+      {
+        id: "org-complete-reset",
+        name: "Complete Home Reset",
+        tagline: "Multi-area transformation",
+        priceCents: 40000,
+        priceLabel: "per project, starting at",
+        highlight: false,
+        items: [
+          "Multi-area organization",
+          "Decluttering and sorting support",
+          "Customized storage systems",
+          "Room-by-room organization plan",
+          "Final reset and walkthrough",
+        ],
+      },
+    ],
+  },
+];
+
+// ─── Add-On Services ───────────────────────────────────────────────────────
+
+export interface AddOn {
+  id: string;
+  name: string;
+  icon: string;
+  priceCents: number;
+  unit: string;
+}
+
+export const ADD_ONS: AddOn[] = [
+  { id: "oven",       name: "Inside Oven",                  icon: "Flame",        priceCents: 7500,  unit: "flat" },
+  { id: "fridge",     name: "Inside Refrigerator",          icon: "Refrigerator", priceCents: 4500,  unit: "flat" },
+  { id: "baseboard",  name: "Baseboard Detailing",          icon: "Minus",        priceCents: 4000,  unit: "flat" },
+  { id: "windows",    name: "Interior Window Cleaning",     icon: "Square",       priceCents: 5000,  unit: "flat" },
+  { id: "laundry",    name: "Laundry Assistance",           icon: "WashingMachine", priceCents: 3000, unit: "flat" },
+  { id: "bathroom",   name: "Extra Bathroom",               icon: "Bath",         priceCents: 2500,  unit: "per bathroom" },
+  { id: "organizing", name: "Organizing Add-On",            icon: "FolderOpen",   priceCents: 10000, unit: "per hour" },
+  { id: "travel",     name: "Travel Outside Service Area",  icon: "MapPin",       priceCents: 3500,  unit: "flat" },
+];
+
+// ─── Deposit & Cancellation Policy ────────────────────────────────────────
+
+export const DEPOSIT_POLICY = {
+  standardDepositCents: 5000,
+  standardThresholdCents: 30000,
+  largeDepositPercent: 50,
+  notes: [
+    "A $50 deposit is required for services totaling $300 or less.",
+    "Services over $300 require a 50% deposit of the total service price.",
+    "Your appointment is confirmed once your deposit is received.",
+    "The remaining balance is due upon completion of service.",
+  ],
+};
+
+export const CANCELLATION_POLICY = [
+  "At least 24 hours' notice required for cancellations or rescheduling.",
+  "One reschedule is allowed with your original deposit.",
+  "Additional rescheduling requires a new deposit.",
+  "Cancellations with less than 24 hours' notice — deposit is nonrefundable.",
+  "No-shows — deposit is forfeited; a new deposit is required to rebook.",
+  "Rescheduled appointments are not confirmed until any required deposit is received.",
+];
+
+// ─── Consultation Process ──────────────────────────────────────────────────
+
+export const CONSULTATION_TYPES = [
+  {
+    id: "residential",
+    icon: "Video",
+    title: "Residential & Organization",
+    method: "Free Video Consultation",
+    description:
+      "All new residential and organization clients complete a free video consultation and virtual walkthrough before booking. We'll discuss your needs, assess the space, and confirm whether it's a good fit.",
+    cta: "Schedule a Video Consultation",
+  },
+  {
+    id: "commercial",
+    icon: "Building2",
+    title: "Commercial Cleaning",
+    method: "In-Person Walkthrough",
+    description:
+      "Commercial clients require an in-person walkthrough of the facility so we can properly assess the space, cleaning requirements, and scope of work before providing a quote.",
+    cta: "Request a Commercial Walkthrough",
+  },
+];

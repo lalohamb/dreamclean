@@ -3,16 +3,14 @@
 
 export const BUSINESS = {
   name:      "Dream Clean Shine",
-  tagline:   "Dream Clean. Stay Clean.",
+  tagline:   "Where Clean Meets Shine.",
   phone:     "(773) 440-0381",
   phoneHref: "tel:+17734400381",
   location:  "Michigan City, Indiana",
-  // [NEEDS BUSINESS CONFIRMATION] Exact service territory before publishing
-  serviceArea: "Michigan City, Indiana and surrounding communities",
+  serviceArea: "Michigan City, Northwest Indiana, and select Chicagoland areas",
   facebook:  "https://www.facebook.com/Dreamcleanshine",
   email:     "", // [NEEDS BUSINESS CONFIRMATION]
-  // [NEEDS BUSINESS CONFIRMATION] Hours before publishing
-  hours:     null as null | string,
+  hours: "9 AM – 5 PM",
 } as const;
 
 // ─── Navigation ────────────────────────────────────────────────────────────
@@ -50,8 +48,8 @@ export const SERVICES: Service[] = [
     shortDesc: "Come home to comfort, freshness, and a space that feels cared for.",
     heroHeadline: "Come Home to Clean.\nCome Home to Comfort.",
     heroSub: "Regular residential cleaning that keeps your home welcoming, fresh, and ready for the moments that matter.",
-    image:    "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
-    imageAlt: "Bright, spotless modern living room with natural light — development placeholder",
+    image:    "/01_TaskRabbit-Cleaner_072__1_.webp",
+    imageAlt: "Professional cleaner at work — Dream Clean Shine residential cleaning",
     icon:     "Home",
     audience: "Homeowners, renters, and busy families",
     benefits: [
@@ -123,8 +121,8 @@ export const SERVICES: Service[] = [
     shortDesc: "Help your business make a clean, professional impression.",
     heroHeadline: "A Cleaner Workplace\nMakes a Better Impression.",
     heroSub: "Professional office cleaning that keeps your workspace presentable, comfortable, and ready for business.",
-    image:    "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
-    imageAlt: "Clean, modern open-plan office with natural light — development placeholder",
+    image:    "/office.webp",
+    imageAlt: "Clean professional office space — Dream Clean Shine office cleaning",
     icon:     "Building2",
     audience: "Office managers, small businesses, and commercial property managers",
     benefits: [
@@ -242,8 +240,8 @@ export const SERVICES: Service[] = [
     shortDesc: "Start fresh in your new space or prepare your previous property for its next chapter.",
     heroHeadline: "A Fresh Start For Every Move.",
     heroSub: "Thorough move-in and move-out cleaning that helps you leave on good terms or arrive to a spotless new home.",
-    image:    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
-    imageAlt: "Empty, freshly cleaned bright home ready for new occupants — development placeholder",
+    image:    "/Move-In-Move-Out-Cleaning-1080x554.webp",
+    imageAlt: "Freshly cleaned home ready for move-in — Dream Clean Shine move-in/move-out cleaning",
     icon:     "PackageOpen",
     audience: "Renters, homeowners, landlords, and property managers",
     benefits: [
@@ -300,8 +298,8 @@ export const SERVICES: Service[] = [
     shortDesc: "Bring greater order, simplicity, and functionality to your everyday spaces.",
     heroHeadline: "A More Organized\nHome. A Calmer Day.",
     heroSub: "Thoughtful home organization that helps you reclaim your space and enjoy a more functional, comfortable environment.",
-    image:    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80",
-    imageAlt: "Neatly organized kitchen pantry with clean shelving — development placeholder",
+    image:    "/InHomeOrg@2x.jpg",
+    imageAlt: "Neatly organized home space — Dream Clean Shine home organization service",
     icon:     "LayoutGrid",
     audience: "Homeowners, renters, and busy families seeking more order",
     benefits: [
@@ -348,6 +346,69 @@ export const SERVICES: Service[] = [
       },
     ],
   },
+  {
+    slug:  "commercial-cleaning",
+    title: "Commercial Cleaning",
+    shortDesc: "Professional cleaning for offices, facilities, and business properties of all sizes.",
+    heroHeadline: "A Cleaner Business\nMakes a Better Impression.",
+    heroSub: "Customized commercial cleaning that keeps your facility presentable, sanitary, and ready for business — every visit.",
+    image:    "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
+    imageAlt: "Clean, professional office space — development placeholder",
+    icon:     "Building2",
+    audience: "Business owners, office managers, and facility managers",
+    benefits: [
+      "A professional environment that impresses clients and staff",
+      "Customized cleaning plan for your facility",
+      "Consistent, reliable service on your schedule",
+      "Insured and professional cleaning team",
+      "Scalable service from small offices to large facilities",
+    ],
+    checklist: [
+      {
+        area: "General Areas",
+        items: [
+          "Trash collection and liner replacement",
+          "Accessible surface dusting",
+          "Floor vacuuming and mopping",
+          "High-touch surface disinfection",
+          "Interior glass and door spot cleaning",
+        ],
+      },
+      {
+        area: "Restrooms",
+        items: [
+          "Toilets cleaned and sanitized",
+          "Sinks and counters scrubbed",
+          "Mirrors polished",
+          "Floors mopped",
+          "Supplies restocked where provided",
+        ],
+      },
+      {
+        area: "Breakroom / Common Areas",
+        items: [
+          "Countertops and tables wiped",
+          "Appliance exteriors cleaned",
+          "Sink cleaned",
+          "Floors mopped",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "How do I get a commercial cleaning quote?",
+        a: "Commercial clients require an in-person walkthrough so we can assess the facility and provide an accurate quote. Contact us to schedule.",
+      },
+      {
+        q: "Do you offer recurring commercial cleaning contracts?",
+        a: "Yes. We provide customized recurring service agreements for commercial properties. A walkthrough and written scope of work are required.",
+      },
+      {
+        q: "Are you insured for commercial properties?",
+        a: "Yes, Dream Clean Shine LLC is insured, giving commercial clients added peace of mind.",
+      },
+    ],
+  },
 ];
 
 // ─── Reviews ───────────────────────────────────────────────────────────────
@@ -379,39 +440,63 @@ export const REVIEWS = [
 
 export const FAQS = [
   {
-    q: "How do I request a cleaning quote?",
-    a: "Use our online quote request form or call us directly at (773) 440-0381. We'll follow up to discuss your needs.",
-  },
-  {
-    q: "What types of cleaning do you offer?",
-    a: "We offer residential cleaning, office cleaning, deep cleaning, move-in/move-out cleaning, and home organization.",
-  },
-  {
-    q: "Do you clean homes and offices?",
-    a: "Yes. We serve both residential and commercial clients in Michigan City, Indiana and surrounding communities.",
-  },
-  {
-    q: "How much does cleaning cost?",
-    // [NEEDS BUSINESS CONFIRMATION]
-    a: "Pricing depends on the type of service, property size, and specific needs. Contact us for a personalized quote.",
-  },
-  {
-    q: "Do I need to provide cleaning supplies?",
-    // [NEEDS BUSINESS CONFIRMATION]
-    a: "Please contact us to discuss supplies. We'll confirm what we bring and whether any preferences need to be accommodated.",
-  },
-  {
-    q: "Can I schedule recurring cleaning?",
-    a: "Yes. We offer recurring service arrangements. Contact us to discuss a schedule that works for you.",
+    q: "What services does DCS offer?",
+    a: "We offer residential cleaning, commercial cleaning, office cleaning, and home organization services.",
   },
   {
     q: "What areas do you serve?",
-    // [NEEDS BUSINESS CONFIRMATION] Confirm exact service territory before publishing
-    a: "We are based in Michigan City, Indiana and serve surrounding communities. Contact us to confirm service availability in your area.",
+    a: "We serve Michigan City, Northwest Indiana, and select Chicagoland areas. Travel fees may apply.",
   },
   {
-    q: "How do I reschedule an appointment?",
-    // [NEEDS BUSINESS CONFIRMATION]
-    a: "Please call us at (773) 440-0381 to reschedule. We ask for as much advance notice as possible.",
+    q: "How do I book a cleaning?",
+    a: "Contact us to schedule a video consultation so we can discuss your needs and provide a customized quote.",
+  },
+  {
+    q: "Do you provide cleaning supplies?",
+    a: "Yes, standard cleaning supplies are included. Specialty products or additional materials may cost extra.",
+  },
+  {
+    q: "How much do your services cost?",
+    a: "Our services have starting prices, but final pricing depends on the size, condition, and specific needs of your space.",
+  },
+  {
+    q: "Do I need a deposit to book?",
+    a: "Yes. A $50 deposit is required for services totaling $300 or less. Services over $300 require a 50% deposit of the total service price. Your appointment is confirmed once your deposit is received.",
+  },
+  {
+    q: "Do you offer recurring cleaning?",
+    a: "Yes! We offer recurring cleaning options to help keep your space consistently clean and comfortable.",
+  },
+  {
+    q: "Do you offer commercial and office cleaning contracts?",
+    a: "Yes, we provide customized commercial and office cleaning services. A walkthrough is required to determine pricing and service needs.",
+  },
+  {
+    q: "Do you offer deep cleaning and move-in/move-out cleaning?",
+    a: "Yes! We offer detailed deep cleaning and move-in/move-out services based on your property\u2019s needs.",
+  },
+  {
+    q: "Do you provide organizing supplies?",
+    a: "Organization supplies, storage bins, and specialty materials are available at an additional cost unless included in your customized quote.",
+  },
+  {
+    q: "Are you insured?",
+    a: "Yes, Dream Clean Shine LLC is insured, giving our clients added peace of mind.",
+  },
+  {
+    q: "How can I request a quote?",
+    a: "Contact us through our website to discuss your service needs and receive a personalized estimate.",
+  },
+  {
+    q: "Do you clean homes with pets?",
+    a: "Yes! We welcome furry family members. An additional pet fee may apply depending on the amount of pet hair and cleaning required.",
+  },
+  {
+    q: "Do I need a video consultation before booking?",
+    a: "Yes! All new clients are required to complete a free video consultation before booking. This allows us to discuss your cleaning or organization needs, assess the scope of the job, and determine whether it\u2019s a good fit for Dream Clean Shine LLC. After the consultation, we\u2019ll provide a customized quote and discuss next steps.",
+  },
+  {
+    q: "Is the video consultation free?",
+    a: "Absolutely! Your video consultation is completely free, and there is no obligation to book our services.",
   },
 ];

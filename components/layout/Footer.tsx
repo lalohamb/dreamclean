@@ -12,15 +12,17 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-3 mb-4" aria-label="Dream Clean Shine home">
-              <Image src="/logo.png" alt="Dream Clean Shine logo" width={52} height={52} className="rounded-full" />
-              <span className="font-heading font-bold text-lg leading-tight">
-                Dream Clean<br />
-                <span className="text-brand-blue text-sm font-semibold">Shine</span>
-              </span>
+            <Link href="/" className="inline-block mb-4" aria-label="Dream Clean Shine home">
+              <Image
+                src="/logo-header.png"
+                alt="Dream Clean Shine logo"
+                width={383}
+                height={240}
+                className="h-34 w-auto "
+              />
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed mb-5">
-              {BUSINESS.tagline}<br />
+              <span className="text-brand-pink font-semibold">Where Clean Meets Shine.</span><br />
               Family-owned cleaning services in {BUSINESS.location}.
             </p>
             <a
