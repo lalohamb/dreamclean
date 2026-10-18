@@ -21,18 +21,11 @@ const PHOTOS = [
 
 export default function Hero() {
   const shuffled = useState(() => [...PHOTOS].sort(() => Math.random() - 0.5))[0];
-  const [current, setCurrent] = useState(0);
-  const [next, setNext] = useState(1);
-  const [fading, setFading] = useState(false);
+  const [active, setActive] = useState(0);
 
   useEffect(() => {
     const id = setInterval(() => {
-      setFading(true);
-      setTimeout(() => {
-        setCurrent((c) => (c + 1) % shuffled.length);
-        setNext((n) => (n + 1) % shuffled.length);
-        setFading(false);
-      }, 600);
+      setActive((a) => (a + 1) % shuffled.length);
     }, 4000);
     return () => clearInterval(id);
   }, [shuffled.length]);
@@ -44,24 +37,18 @@ export default function Hero() {
     >
       {/* Background image — right half only on lg+ */}
       <div className="absolute inset-y-0 right-0 w-full lg:w-[55%] z-0">
-        {/* Outgoing image — stays fully visible underneath */}
-        <Image
-          src={shuffled[current]}
-          alt="Dream Clean Shine — professional cleaning"
-          fill
-          priority
-          sizes="(max-width:1024px) 100vw, 55vw"
-          className="object-cover object-top"
-        />
-        {/* Incoming image — fades in on top */}
-        <Image
-          src={shuffled[next]}
-          alt=""
-          fill
-          sizes="(max-width:1024px) 100vw, 55vw"
-          className="object-cover object-top"
-          style={{ opacity: fading ? 1 : 0, transition: "opacity 0.6s ease" }}
-        />
+        {shuffled.map((src, i) => (
+          <Image
+            key={src}
+            src={src}
+            alt={i === 0 ? "Dream Clean Shine — professional cleaning" : ""}
+            fill
+            priority={i === 0}
+            sizes="(max-width:1024px) 100vw, 55vw"
+            className="object-cover object-top absolute inset-0"
+            style={{ opacity: active === i ? 1 : 0, transition: "opacity 1s ease" }}
+          />
+        ))}
         {/* Mobile: solid cover; desktop: gradient fade left→transparent */}
         <div className="absolute inset-0 bg-brand-ice-blue lg:[background:linear-gradient(to_right,#EFF8FF_0%,rgba(239,248,255,0.65)_45%,transparent_100%)]" />
       </div>
