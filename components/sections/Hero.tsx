@@ -20,11 +20,20 @@ const PHOTOS = [
 ];
 
 export default function Hero() {
-  const [photo, setPhoto] = useState<string | null>(null);
+  const [index, setIndex] = useState(0);
+  const [visible, setVisible] = useState(true);
+  const shuffled = useState(() => [...PHOTOS].sort(() => Math.random() - 0.5))[0];
 
   useEffect(() => {
-    setPhoto(PHOTOS[Math.floor(Math.random() * PHOTOS.length)]);
-  }, []);
+    const id = setInterval(() => {
+      setVisible(false);
+      setTimeout(() => {
+        setIndex((i) => (i + 1) % shuffled.length);
+        setVisible(true);
+      }, 400);
+    }, 4000);
+    return () => clearInterval(id);
+  }, [shuffled.length]);
 
   return (
     <section
@@ -32,10 +41,10 @@ export default function Hero() {
       aria-label="Hero"
     >
       {/* Background image — right half only on lg+ */}
-      {photo && (
       <div className="absolute inset-y-0 right-0 w-full lg:w-[55%] z-0">
         <Image
-          src={photo}
+          src={shuffled[index]}
+          style={{ opacity: visible ? 1 : 0, transition: "opacity 0.4s ease" }}
           alt="Dream Clean Shine — professional cleaning"
           fill
           priority
@@ -45,7 +54,6 @@ export default function Hero() {
         {/* Mobile: solid cover; desktop: gradient fade left→transparent */}
         <div className="absolute inset-0 bg-brand-ice-blue lg:[background:linear-gradient(to_right,#EFF8FF_0%,rgba(239,248,255,0.65)_45%,transparent_100%)]" />
       </div>
-      )}
 
       {/* Floating suds */}
       <FloatingBubbles count={70} />
