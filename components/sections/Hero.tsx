@@ -20,17 +20,19 @@ const PHOTOS = [
 ];
 
 export default function Hero() {
-  const [index, setIndex] = useState(0);
-  const [visible, setVisible] = useState(true);
   const shuffled = useState(() => [...PHOTOS].sort(() => Math.random() - 0.5))[0];
+  const [current, setCurrent] = useState(0);
+  const [next, setNext] = useState(1);
+  const [fading, setFading] = useState(false);
 
   useEffect(() => {
     const id = setInterval(() => {
-      setVisible(false);
+      setFading(true);
       setTimeout(() => {
-        setIndex((i) => (i + 1) % shuffled.length);
-        setVisible(true);
-      }, 400);
+        setCurrent((c) => (c + 1) % shuffled.length);
+        setNext((n) => (n + 1) % shuffled.length);
+        setFading(false);
+      }, 600);
     }, 4000);
     return () => clearInterval(id);
   }, [shuffled.length]);
@@ -42,14 +44,23 @@ export default function Hero() {
     >
       {/* Background image — right half only on lg+ */}
       <div className="absolute inset-y-0 right-0 w-full lg:w-[55%] z-0">
+        {/* Outgoing image — stays fully visible underneath */}
         <Image
-          src={shuffled[index]}
-          style={{ opacity: visible ? 1 : 0, transition: "opacity 0.4s ease" }}
+          src={shuffled[current]}
           alt="Dream Clean Shine — professional cleaning"
           fill
           priority
           sizes="(max-width:1024px) 100vw, 55vw"
           className="object-cover object-top"
+        />
+        {/* Incoming image — fades in on top */}
+        <Image
+          src={shuffled[next]}
+          alt=""
+          fill
+          sizes="(max-width:1024px) 100vw, 55vw"
+          className="object-cover object-top"
+          style={{ opacity: fading ? 1 : 0, transition: "opacity 0.6s ease" }}
         />
         {/* Mobile: solid cover; desktop: gradient fade left→transparent */}
         <div className="absolute inset-0 bg-brand-ice-blue lg:[background:linear-gradient(to_right,#EFF8FF_0%,rgba(239,248,255,0.65)_45%,transparent_100%)]" />
