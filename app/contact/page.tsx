@@ -33,7 +33,7 @@ export default function ContactPage() {
 
       <section className="section-pad bg-white pb-28 lg:pb-20">
         <div className="container-xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
+          <div className="max-w-lg mx-auto">
 
             {/* Contact info */}
             <div className="space-y-6">
@@ -89,17 +89,17 @@ export default function ContactPage() {
               </div>
 
               {/* Hours placeholder */}
-              <div className="p-5 rounded-2xl border border-dashed border-slate-200 text-sm text-slate-400 italic">
+           {/*    <div className="p-5 rounded-2xl border border-dashed border-slate-200 text-sm text-slate-400 italic">
                 Business hours will be listed here once confirmed.
               </div>
 
               <Button href="/quote" size="lg" className="w-full sm:w-auto">
-                Request a Cleaning Quote
-              </Button>
+                Request a FREE Cleaning Quote
+              </Button> */}
             </div>
 
             {/* Simple contact form — redirects to quote for full form */}
-            <div className="bg-brand-ice-blue rounded-3xl p-8">
+          {/*   <div className="bg-brand-ice-blue rounded-3xl p-8">
               <h2 className="text-xl font-heading font-bold text-brand-charcoal mb-2">
                 Send a Message
               </h2>
@@ -130,7 +130,7 @@ export default function ContactPage() {
                   Use Full Quote Form Instead
                 </Button>
               </form>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

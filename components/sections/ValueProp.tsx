@@ -53,7 +53,7 @@ export default function ValueProp() {
                 </li>
               ))}
             </ul>
-            <Button href="/quote" size="lg">Request a Cleaning Quote</Button>
+            <Button href="/quote" size="lg">Request a FREE Cleaning Quote</Button>
           </div>
         </div>
       </div>

@@ -13,6 +13,7 @@ export interface SelectedAddOn {
 }
 
 interface EstimateState {
+  calendlyUrl: string;
   selectedTier: SelectedTier | null;
   setTier: (categoryId: string, tier: PricingTier) => void;
   selectedAddOns: SelectedAddOn[];
@@ -23,7 +24,7 @@ interface EstimateState {
 
 const Ctx = createContext<EstimateState | null>(null);
 
-export function EstimateProvider({ children }: { children: ReactNode }) {
+export function EstimateProvider({ children, calendlyUrl }: { children: ReactNode; calendlyUrl: string }) {
   const [selectedTier, setSelectedTierState] = useState<SelectedTier | null>(null);
   const [selectedAddOns, setSelectedAddOns] = useState<SelectedAddOn[]>([]);
 
@@ -53,7 +54,7 @@ export function EstimateProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <Ctx.Provider value={{ selectedTier, setTier, selectedAddOns, toggleAddOn, setQty, clear }}>
+    <Ctx.Provider value={{ calendlyUrl, selectedTier, setTier, selectedAddOns, toggleAddOn, setQty, clear }}>
       {children}
     </Ctx.Provider>
   );

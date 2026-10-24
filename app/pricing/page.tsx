@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/metadata";
+import { getSettings } from "@/lib/settings";
 import PricingClient from "./PricingClient";
 
 export const metadata: Metadata = buildMetadata({
@@ -10,5 +11,6 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function PricingPage() {
-  return <PricingClient />;
+  const { calendlyUrl } = getSettings();
+  return <PricingClient calendlyUrl={calendlyUrl} />;
 }

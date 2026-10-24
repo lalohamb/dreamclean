@@ -6,6 +6,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import StructuredData from "@/components/StructuredData";
 import { BUSINESS } from "@/lib/constants";
+import { getSettings } from "@/lib/settings";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,6 +21,8 @@ const jakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
+const { googleSiteVerification } = getSettings();
+
 export const metadata: Metadata = {
   title: {
     default:  `${BUSINESS.name} | Professional Cleaning Services in Michigan City, IN`,
@@ -33,6 +36,9 @@ export const metadata: Metadata = {
     locale:   "en_US",
     type:     "website",
   },
+  ...(googleSiteVerification && {
+    verification: { google: googleSiteVerification },
+  }),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

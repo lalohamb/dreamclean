@@ -56,9 +56,9 @@ function ServiceSection() {
   );
 }
 
-export default function PricingClient() {
+export default function PricingClient({ calendlyUrl }: { calendlyUrl: string }) {
   return (
-    <EstimateProvider>
+    <EstimateProvider calendlyUrl={calendlyUrl}>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section className="pt-32 pb-16 bg-brand-ice-blue">
         <div className="container-md text-center">

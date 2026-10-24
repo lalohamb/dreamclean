@@ -109,7 +109,7 @@ export default function Navbar() {
           </a>
           <Button href="/quote" size="sm" className="py-2.5">
             <Sparkles size={15} aria-hidden="true" />
-            Get a Quote
+            Get a Free Quote
           </Button>
         </div>
 

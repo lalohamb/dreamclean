@@ -75,7 +75,7 @@ export default function AboutPage() {
                 We serve Michigan City, Northwest Indiana, and select Chicagoland areas — and we're
                 proud to be part of the communities we clean.
               </p>
-              <Button href="/quote" size="md">Request a Cleaning Quote</Button>
+              <Button href="/quote" size="md">Request a FREECleaning Quote</Button>
             </div>
           </div>
         </div>

@@ -6,7 +6,7 @@ import { Phone, Video, Building2 } from "lucide-react";
 import FacebookIcon from "@/components/ui/FacebookIcon";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Request a Cleaning Quote",
+  title: "Request a FREE Cleaning Quote",
   description:
     "Request a free cleaning quote from Dream Clean Shine in Michigan City, Indiana. Residential cleaning, office cleaning, deep cleaning, move-in/move-out, and home organization.",
   path: "/quote",

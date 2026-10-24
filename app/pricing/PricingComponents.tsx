@@ -202,9 +202,20 @@ export function AddOnCard({ addOn }: { addOn: AddOn }) {
 // ─── Selected Summary ─────────────────────────────────────────────────────
 
 export function SelectedSummary() {
-  const { selectedTier, selectedAddOns, clear } = useEstimate();
+  const { calendlyUrl, selectedTier, selectedAddOns, clear } = useEstimate();
   const hasItems = selectedTier || selectedAddOns.length > 0;
   if (!hasItems) return null;
+
+  const tierPrice = selectedTier?.tier.priceCents ?? 0;
+  const addOnsPrice = selectedAddOns.reduce((sum, s) => sum + s.addOn.priceCents * s.quantity, 0);
+  const totalCents = tierPrice + addOnsPrice;
+
+  const params = new URLSearchParams({
+    name: selectedTier ? `${selectedTier.categoryId} — ${selectedTier.tier.name}` : "",
+    ...(selectedAddOns.length > 0 && { addons: selectedAddOns.map((s) => s.addOn.name).join(", ") }),
+    ...(totalCents > 0 && { total: formatPrice(totalCents) }),
+  });
+  const bookingUrl = `${calendlyUrl}?${params.toString()}`;
 
   return (
     <div className="bg-white rounded-3xl shadow-card-hover border border-slate-100 p-6 sticky top-28">
@@ -242,16 +253,24 @@ export function SelectedSummary() {
       )}
 
       <div className="border-t border-dashed border-slate-200 pt-3 mb-4">
+        {totalCents > 0 && (
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm font-semibold text-brand-charcoal">Estimated Total</span>
+            <span className="text-lg font-heading font-extrabold text-brand-pink">{formatPrice(totalCents)}+</span>
+          </div>
+        )}
         <p className="text-xs text-slate-400 italic leading-relaxed">
           Final pricing is subject to confirmation based on your cleaning needs.
         </p>
       </div>
 
       <a
-        href={`/quote?tier=${encodeURIComponent(selectedTier?.tier.name ?? "")}&category=${encodeURIComponent(selectedTier?.categoryId ?? "")}&addons=${encodeURIComponent(selectedAddOns.map((s) => s.addOn.name).join(","))}`}
+        href={bookingUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         className="block w-full text-center rounded-full bg-brand-pink text-white font-heading font-semibold py-3 text-sm hover:bg-[#d4206f] transition-colors"
       >
-        Request a Quote →
+        Schedule Now →
       </a>
     </div>
   );
