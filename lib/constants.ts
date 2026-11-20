@@ -480,6 +480,10 @@ export const FAQS = [
     a: "Organization supplies, storage bins, and specialty materials are available at an additional cost unless included in your customized quote.",
   },
   {
+    q: "Is a Zoom walkthrough required to get a quote?",
+    a: "Yes. All new residential and organization clients are required to complete a free video consultation before booking. During the call, you'll walk us through your space on camera so we can see exactly what needs attention and provide an accurate, personalized quote. Commercial clients require an in-person walkthrough instead.",
+  },
+  {
     q: "Are you insured?",
     a: "Yes, Dream Clean Shine LLC is insured, giving our clients added peace of mind.",
   },

@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import StructuredData from "@/components/StructuredData";
+import MessengerChat from "@/components/MessengerChat";
 import { BUSINESS } from "@/lib/constants";
 import { getSettings } from "@/lib/settings";
 
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main id="main-content">{children}</main>
         <Footer />
+        <MessengerChat />
         {/* Mobile sticky CTA */}
         <div className="fixed bottom-0 inset-x-0 z-40 lg:hidden bg-white border-t border-slate-200 px-4 py-3 flex gap-3">
           <a

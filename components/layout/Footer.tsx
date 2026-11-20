@@ -1,12 +1,41 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Phone, MapPin } from "lucide-react";
+import { Phone, MapPin, Sparkles } from "lucide-react";
 import FacebookIcon from "@/components/ui/FacebookIcon";
 import { BUSINESS, SERVICES, NAV_LINKS } from "@/lib/constants";
+import NewsletterSignup from "@/components/sections/NewsletterSignup";
 
 export default function Footer() {
   return (
     <footer className="bg-brand-charcoal text-white">
+
+      {/* Newsletter band */}
+      <div className="border-b border-white/10 bg-gradient-to-r from-brand-pink/20 via-brand-charcoal to-brand-charcoal">
+        <div className="container-xl py-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-brand-pink/20 rounded-full px-3 py-1 mb-4">
+                <Sparkles size={13} className="text-brand-pink" />
+                <span className="text-xs font-semibold text-brand-pink uppercase tracking-widest">Exclusive Members</span>
+              </div>
+              <h3 className="font-heading font-extrabold text-white text-2xl md:text-3xl leading-tight mb-3">
+                Get Discounts &<br />Cleaning Tips
+              </h3>
+              <p className="text-white/60 text-sm leading-relaxed max-w-sm">
+                Join our list and be the first to receive exclusive discounts, seasonal offers, and pro cleaning tips from Dream Clean Shine.
+              </p>
+              <div className="flex flex-wrap gap-4 mt-4 text-xs text-white/50 font-semibold">
+                <span>✓ Exclusive discounts</span>
+                <span>✓ Seasonal offers</span>
+                <span>✓ Cleaning tips</span>
+              </div>
+            </div>
+            <NewsletterSignup />
+          </div>
+        </div>
+      </div>
+
+      {/* Main footer */}
       <div className="container-xl py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 
@@ -18,12 +47,12 @@ export default function Footer() {
                 alt="Dream Clean Shine logo"
                 width={383}
                 height={240}
-                className="h-34 w-auto "
+                className="h-34 w-auto"
               />
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed mb-5">
               <span className="text-brand-pink font-semibold">Where Clean Meets Shine.</span><br />
-              Family-owned cleaning services in {BUSINESS.location}.
+              Family-owned cleaning services in {BUSINESS.location} & Chicagoland areas.
             </p>
             <a
               href={BUSINESS.facebook}
@@ -44,10 +73,7 @@ export default function Footer() {
             <ul className="space-y-2" role="list">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-slate-300 hover:text-white transition-colors"
-                  >
+                  <Link href={link.href} className="text-sm text-slate-300 hover:text-white transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -68,10 +94,7 @@ export default function Footer() {
             <ul className="space-y-2" role="list">
               {SERVICES.map((s) => (
                 <li key={s.slug}>
-                  <Link
-                    href={`/services/${s.slug}`}
-                    className="text-sm text-slate-300 hover:text-white transition-colors"
-                  >
+                  <Link href={`/services/${s.slug}`} className="text-sm text-slate-300 hover:text-white transition-colors">
                     {s.title}
                   </Link>
                 </li>
@@ -97,7 +120,6 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2 text-sm text-slate-300">
                 <MapPin size={15} className="mt-0.5 shrink-0 text-brand-blue" />
-                {/* [NEEDS BUSINESS CONFIRMATION] Exact address/service area */}
                 {BUSINESS.serviceArea}
               </li>
             </ul>
@@ -115,7 +137,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="container-xl py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
           <p>© {new Date().getFullYear()} {BUSINESS.name} LLC. All rights reserved.</p>
-          <p>Powered by <a href="https://atlascloudhosting.com" className="hover:text-slate-300 transition-colors">Atlas Cloud Hosting</a></p>
+          {/* <p>Powered by <a href="https://atlascloudhosting.com" className="hover:text-slate-300 transition-colors">Atlas Cloud Hosting</a></p> */}
           <div className="flex gap-5">
             <Link href="/faq" className="hover:text-slate-300 transition-colors">FAQ</Link>
             <Link href="/contact" className="hover:text-slate-300 transition-colors">Contact</Link>

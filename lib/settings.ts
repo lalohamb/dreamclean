@@ -10,8 +10,10 @@ export const SETTINGS_DEFAULTS = {
   quoteToEmail:       "",
   mailerliteApiKey:   "",
   mailerliteGroupId:  "",
-  googleSiteVerification: "",
-  googleSearchConsoleUrl: "",
+  googleSiteVerification:      "",
+  googleSearchConsoleUrl:      "",
+  googleAnalyticsMeasurementId: "",
+  googleTagManagerId:           "",
   stripePublishableKey:   "",
   stripeSecretKey:        "",
   stripeWebhookSecret:    "",
@@ -19,13 +21,30 @@ export const SETTINGS_DEFAULTS = {
 
 export type Settings = typeof SETTINGS_DEFAULTS;
 
+/** Values seeded from environment variables (lowest priority). */
+function envDefaults(): Partial<Settings> {
+  return {
+    resendApiKey:       process.env.RESEND_API_KEY       || "",
+    quoteToEmail:       process.env.QUOTE_TO_EMAIL       || "",
+    mailerliteApiKey:   process.env.MAILERLITE_API_KEY   || "",
+    mailerliteGroupId:  process.env.MAILERLITE_GROUP_ID  || "",
+    stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY || "",
+    stripeSecretKey:      process.env.STRIPE_SECRET_KEY      || "",
+    stripeWebhookSecret:  process.env.STRIPE_WEBHOOK_SECRET  || "",
+    googleSiteVerification:       process.env.GOOGLE_SITE_VERIFICATION        || "",
+    googleAnalyticsMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID   || "",
+    googleTagManagerId:           process.env.NEXT_PUBLIC_GTM_ID              || "",
+  };
+}
+
 export function getSettings(): Settings {
+  let fromFile: Partial<Settings> = {};
   try {
     const raw = fs.readFileSync(SETTINGS_PATH, "utf-8");
-    return { ...SETTINGS_DEFAULTS, ...JSON.parse(raw) };
-  } catch {
-    return { ...SETTINGS_DEFAULTS };
-  }
+    fromFile = JSON.parse(raw);
+  } catch { /* file missing — fine */ }
+  // Priority: settings.json > env vars > hardcoded defaults
+  return { ...SETTINGS_DEFAULTS, ...envDefaults(), ...fromFile };
 }
 
 export function saveSettings(data: Partial<Settings>): Settings {

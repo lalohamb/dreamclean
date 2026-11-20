@@ -15,6 +15,8 @@ type Settings = {
   mailerliteGroupId: string;
   googleSiteVerification: string;
   googleSearchConsoleUrl: string;
+  googleAnalyticsMeasurementId: string;
+  googleTagManagerId: string;
   stripePublishableKey: string;
   stripeSecretKey: string;
   stripeWebhookSecret: string;
@@ -29,6 +31,8 @@ const EMPTY: Settings = {
   mailerliteGroupId: "",
   googleSiteVerification: "",
   googleSearchConsoleUrl: "",
+  googleAnalyticsMeasurementId: "",
+  googleTagManagerId: "",
   stripePublishableKey: "",
   stripeSecretKey: "",
   stripeWebhookSecret: "",
@@ -321,14 +325,41 @@ export default function AdminPage() {
             />
           </Section>
 
-          {/* Analytics placeholder */}
+          {/* Google Analytics */}
           <Section
             icon={<BarChart2 size={18} className="text-orange-500" />}
-            title="Google Analytics"
-            description="Coming soon — GA4 measurement ID"
+            title="Google Analytics & Tag Manager"
+            description="GA4 measurement ID and GTM container"
             color="bg-orange-50"
           >
-            <p className="text-xs text-slate-400 italic">GA4 integration coming in a future update.</p>
+            <div className="flex gap-2 flex-wrap">
+              <StatusBadge value={form.googleAnalyticsMeasurementId} label="GA4 ID" />
+              <StatusBadge value={form.googleTagManagerId} label="GTM ID" />
+            </div>
+            <Field
+              id="googleAnalyticsMeasurementId" label="GA4 Measurement ID"
+              hint="From Google Analytics → Admin → Data Streams → your stream. Env: NEXT_PUBLIC_GA_MEASUREMENT_ID"
+              value={form.googleAnalyticsMeasurementId} onChange={set("googleAnalyticsMeasurementId")}
+              placeholder="G-XXXXXXXXXX"
+            />
+            <Field
+              id="googleTagManagerId" label="Google Tag Manager Container ID"
+              hint="From tagmanager.google.com → your container. Env: NEXT_PUBLIC_GTM_ID"
+              value={form.googleTagManagerId} onChange={set("googleTagManagerId")}
+              placeholder="GTM-XXXXXXX"
+            />
+            {form.googleAnalyticsMeasurementId && (
+              <div className="bg-slate-50 rounded-xl p-3 text-xs text-slate-500 space-y-1">
+                <p className="font-semibold text-slate-600">GA4 Script snippet</p>
+                <code className="block font-mono break-all">{`<script async src="https://www.googletagmanager.com/gtag/js?id=${form.googleAnalyticsMeasurementId}"></script>`}</code>
+              </div>
+            )}
+            {form.googleTagManagerId && (
+              <div className="bg-slate-50 rounded-xl p-3 text-xs text-slate-500 space-y-1">
+                <p className="font-semibold text-slate-600">GTM Script snippet</p>
+                <code className="block font-mono break-all">{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${form.googleTagManagerId}');`}</code>
+              </div>
+            )}
           </Section>
 
           {/* Save */}

@@ -8,6 +8,8 @@ import FinalCTA from "@/components/sections/FinalCTA";
 import { SERVICES } from "@/lib/constants";
 import { buildMetadata } from "@/lib/metadata";
 
+const BASE = "https://dreamcleanshine.com";
+
 interface Props {
   params: { slug: string };
 }
@@ -20,10 +22,64 @@ export function generateMetadata({ params }: Props): Metadata {
   const service = SERVICES.find((s) => s.slug === params.slug);
   if (!service) return {};
   return buildMetadata({
-    title: `${service.title} in Michigan City, Indiana`,
-    description: `${service.heroSub} Serving Michigan City, Indiana. Request a free quote from Dream Clean Shine today.`,
+    title: `${service.title} in Michigan City, Indiana & Chicagoland`,
+    description: `${service.heroSub} Serving Michigan City, Northwest Indiana & Chicagoland areas. Request a free quote from Dream Clean Shine today.`,
     path: `/services/${service.slug}`,
+    keywords: [
+      `${service.title} Michigan City Indiana`,
+      `${service.title} Northwest Indiana`,
+      `${service.title} Chicagoland`,
+      `${service.title.toLowerCase()} near me`,
+    ],
   });
+}
+
+function ServiceSchema({ service }: { service: typeof SERVICES[0] }) {
+  const schema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home",     item: BASE },
+        { "@type": "ListItem", position: 2, name: "Services", item: `${BASE}/#services` },
+        { "@type": "ListItem", position: 3, name: service.title, item: `${BASE}/services/${service.slug}` },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: service.title,
+      description: service.heroSub,
+      url: `${BASE}/services/${service.slug}`,
+      provider: {
+        "@type": "LocalBusiness",
+        name: "Dream Clean Shine",
+        url: BASE,
+        telephone: "(773) 440-0381",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Michigan City",
+          addressRegion: "IN",
+          addressCountry: "US",
+        },
+      },
+      areaServed: [
+        "Michigan City, IN", "La Porte, IN", "Valparaiso, IN",
+        "Northwest Indiana", "Chicagoland, IL",
+      ],
+      ...(service.faqs.length > 0 && {
+        mainEntity: {
+          "@type": "FAQPage",
+          mainEntity: service.faqs.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        },
+      }),
+    },
+  ];
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }
 
 export default function ServicePage({ params }: Props) {
@@ -32,6 +88,7 @@ export default function ServicePage({ params }: Props) {
 
   return (
     <>
+      <ServiceSchema service={service} />
       {/* Hero */}
       <section className="relative min-h-[60vh] flex items-end bg-brand-charcoal overflow-hidden pt-20">
         <Image

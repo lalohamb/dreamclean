@@ -51,7 +51,7 @@ export default function Navbar() {
       {/* Brand accent stripe */}
       <div className="h-1 bg-gradient-to-r from-brand-blue via-brand-pink to-brand-blue" aria-hidden="true" />
 
-      <nav className="container-xl flex items-center justify-between gap-4 h-[76px] lg:h-[96px]" aria-label="Main navigation">
+      <nav className="w-full flex items-center justify-between gap-4 h-[90px] lg:h-[116px] px-5 sm:px-8 lg:px-10" aria-label="Main navigation">
         {/* Logo — the supplied artwork already contains the wordmark, so no extra text */}
         <Link
           href="/"
@@ -63,7 +63,7 @@ export default function Navbar() {
             alt={`${BUSINESS.name} logo`}
             width={383}
             height={240}
-            className="h-[66px] w-auto lg:h-[84px]"
+            className="h-[88px] w-auto lg:h-[110px]"
             priority
           />
         </Link>
@@ -77,10 +77,10 @@ export default function Navbar() {
                 <Link
                   href={link.href}
                   aria-current={active ? "page" : undefined}
-                  className={`block rounded-full px-4 py-2 font-heading text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink ${
+                  className={`block rounded-full px-4 py-2 font-heading text-base font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink ${
                     active
                       ? "bg-white text-brand-pink shadow-sm"
-                      : "text-brand-charcoal/75 hover:bg-white/70 hover:text-brand-pink"
+                      : "text-brand-charcoal hover:bg-white hover:text-brand-pink hover:shadow-sm"
                   }`}
                 >
                   {link.label}

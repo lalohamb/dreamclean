@@ -6,8 +6,9 @@ import FloatingBubbles from "@/components/sections/FloatingBubbles";
 import { useState, useEffect } from "react";
 
 const PHOTOS = [
-  "/193576351_111199977835788_7236715514882148363_n.jpg",
+   // "/193576351_111199977835788_7236715514882148363_n.jpg",
   "/468358154_874160801539698_8034201561199308748_n.jpg",
+  "/image7.jpeg",
   "/470212576_885972083691903_333170140043904055_n.jpg",
   "/471151824_886242170347736_2320801605946304729_n.jpg",
   "/471173982_890856676536777_8821864839160866793_n.jpg",
@@ -32,11 +33,11 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-[92vh] flex items-center bg-brand-ice-blue overflow-hidden pt-20"
+      className="relative min-h-[92vh] bg-brand-ice-blue overflow-hidden pt-20"
       aria-label="Hero"
     >
       {/* Background image — right half only on lg+ */}
-      <div className="absolute inset-y-0 right-0 w-full lg:w-[55%] z-0">
+      <div className="absolute inset-y-0 right-0 w-full lg:w-[calc(55%+2px)] z-0 overflow-hidden">
         {shuffled.map((src, i) => (
           <Image
             key={src}
@@ -56,14 +57,14 @@ export default function Hero() {
       {/* Floating suds */}
       <FloatingBubbles count={70} />
 
-      {/* Content */}
-      <div className="container-xl relative z-10 py-20">
-        <div className="max-w-xl">
+      {/* Content — pinned to left with explicit padding */}
+      <div className="relative z-10 h-full min-h-[92vh] flex items-center px-5 sm:px-8 lg:px-16">
+        <div className="w-full max-w-xl py-20">
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-brand-blue/30 rounded-full px-4 py-1.5 mb-6">
             <Sparkles size={14} className="text-brand-pink" />
             <span className="text-xs font-semibold font-heading text-brand-charcoal tracking-wide">
-              Michigan City, Indiana
+              Michigan City, Indiana & Chicagoland Areas
             </span>
           </div>
 

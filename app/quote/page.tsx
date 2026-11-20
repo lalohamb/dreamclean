@@ -78,7 +78,28 @@ export default function QuotePage({
 
             {/* Sidebar */}
             <aside className="space-y-6">
-              <div className="bg-brand-ice-blue rounded-3xl p-7">
+                <div className="bg-brand-ice-blue rounded-3xl p-7 text-sm text-slate-500 leading-relaxed">
+                <p className="font-semibold text-brand-charcoal mb-3">What happens next?</p>
+                <ol className="space-y-3 list-none">
+                  <li className="flex items-start gap-3">
+                    <span className="w-5 h-5 rounded-full bg-brand-pink text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">1</span>
+                    <span>We receive your request and reach out to schedule a <strong className="text-brand-charcoal">free video consultation</strong>.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-5 h-5 rounded-full bg-brand-pink text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">2</span>
+                    <span>During the video call, you <strong className="text-brand-charcoal">walk us through your space on camera</strong> — room by room — so we can see exactly what needs attention.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-5 h-5 rounded-full bg-brand-pink text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">3</span>
+                    <span>We review what we saw and provide a <strong className="text-brand-charcoal">personalized quote</strong> based on your specific space and needs.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-5 h-5 rounded-full bg-brand-pink text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">4</span>
+                    <span>Once you approve the quote, we confirm your deposit and <strong className="text-brand-charcoal">schedule your service</strong>.</span>
+                  </li>
+                </ol>
+              </div>
+               <div className="bg-brand-ice-blue rounded-3xl p-7">
                 <h2 className="font-heading font-bold text-brand-charcoal mb-3">Prefer to Call?</h2>
                 <p className="text-sm text-slate-500 mb-4 leading-relaxed">
                   We're happy to talk through your needs directly.
@@ -104,16 +125,6 @@ export default function QuotePage({
                   <FacebookIcon size={16} className="text-brand-blue" />
                   Dream Clean Shine on Facebook
                 </a>
-              </div>
-
-              <div className="bg-brand-ice-blue rounded-3xl p-7 text-sm text-slate-500 leading-relaxed">
-                <p className="font-semibold text-brand-charcoal mb-2">What happens next?</p>
-                <ol className="space-y-2 list-decimal list-inside">
-                  <li>We receive your request.</li>
-                  <li>We schedule your free consultation.</li>
-                  <li>We assess your space and provide a quote.</li>
-                  <li>We confirm details and schedule your service.</li>
-                </ol>
               </div>
             </aside>
           </div>
