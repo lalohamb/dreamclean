@@ -90,7 +90,7 @@ export default function LocationPage({ params }: Props) {
             {loc.description}
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Button href="/quote" size="lg">Get a Free Quote</Button>
+            <Button href="/quote" size="lg">GET A FREE QUOTE</Button>
             <a
               href={BUSINESS.phoneHref}
               className="inline-flex items-center gap-2 rounded-full border-2 border-white/30 text-white font-heading font-semibold px-6 py-3 hover:bg-white/10 transition-colors"

@@ -28,7 +28,7 @@ export default function FinalCTA() {
         </p>
         <div className="flex flex-wrap gap-4 justify-center">
           <Button href="/quote" size="lg">
-            Get a FREE Cleaning Quote
+            GET A FREE CLEANING QUOTE
           </Button>
           <a
             href={BUSINESS.phoneHref}
